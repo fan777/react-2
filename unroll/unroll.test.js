@@ -33,21 +33,18 @@ describe("#unroll", function () {
   });
 
   it("is an array", function () {
-    expect(unroll([[1]])).toEqual(true);
     expect(unroll(1)).toEqual(false);
     expect(unroll(true)).toEqual(false);
   })
 
   it("is a square array", function () {
-    expect(unroll([[1]])).toEqual(true);
     expect(unroll([[1, 2, 3]])).toEqual(false);
     expect(unroll(badSquare1)).toEqual(false);
     expect(unroll(badSquare2)).toEqual(false);
-    expect(unroll(square)).toEqual(true);
-    expect(unroll(smallerSquare)).toEqual(true);
   })
 
   it("is solved", function () {
+    expect(unroll([[1]])).toEqual([1]);
     expect(unroll(square)).toEqual([1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10]);
     expect(unroll(smallerSquare)).toEqual(["a", "b", "c", "f", "i", "h", "g", "d", "e"]);
   })
