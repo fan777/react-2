@@ -1,6 +1,15 @@
 function unroll(squareArray) {
-  // check if not square array?
+  if (squareArray && !Array.isArray(squareArray)) {
+    return false;
+  }
+
+  if (!squareArray.every(array => Array.isArray(array) && squareArray.length === array.length)) {
+    return false;
+  }
+
   //
+
+  return false;
 }
 
 module.exports = unroll;
