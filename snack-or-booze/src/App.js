@@ -27,21 +27,14 @@ function App() {
   }
 
   useEffect(() => {
-    async function getSnacks() {
-      let snacks = await SnackOrBoozeApi.getFood('snacks');
+    async function getFoods() {
+      let snacks = await SnackOrBoozeApi.getFood("snacks");
+      let drinks = await SnackOrBoozeApi.getFood("drinks");
       setSnacks(snacks);
-      setIsLoading(false);
-    }
-    getSnacks();
-  }, []);
-
-  useEffect(() => {
-    async function getDrinks() {
-      let drinks = await SnackOrBoozeApi.getFood('drinks');
       setDrinks(drinks);
       setIsLoading(false);
     }
-    getDrinks();
+    getFoods();
   }, []);
 
   if (isLoading) {

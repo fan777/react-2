@@ -33,7 +33,6 @@ const NewFoodForm = ({ addFood }) => {
           <CardTitle className="font-weight-bold">
             Suggest a Recipe!
           </CardTitle>
-
         </CardBody>
       </Card>
       <Form className="clearfix" onSubmit={handleSubmit}>

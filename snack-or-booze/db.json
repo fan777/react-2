@@ -64,6 +64,13 @@
       "description": "dry and beefy",
       "recipe": "beef, sun, salt",
       "serve": "in a bag"
+    },
+    {
+      "id": "snakko",
+      "name": "snakko",
+      "description": "sasdgf ",
+      "recipe": "sdf sdf",
+      "serve": "gsadf sa sdf"
     }
   ]
 }
