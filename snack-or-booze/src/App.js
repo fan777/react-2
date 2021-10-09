@@ -14,19 +14,21 @@ function App() {
   const [snacks, setSnacks] = useState([]);
   const [drinks, setDrinks] = useState([]);
 
-  const addFood = newFood => {
-    if (newFood.type === "snack") {
-      setSnacks(prevFoods => ([...prevFoods, { ...newFood, id: newFood.name.replace(/\s+/g, '-').toLowerCase() }]))
-      console.log(snacks)
-    } else if (newFood.type === "drink") {
-      setDrinks(prevFoods => ([...prevFoods, { ...newFood, id: newFood.name.replace(/\s+/g, '-').toLowerCase() }]))
-      console.log(drinks)
+  const addFood = async food => {
+    const { type, name, description, recipe, serve } = food;
+    let newFood = { id: name.replace(/\s+/g, '-').toLowerCase(), name, description, recipe, serve };
+    let response = await SnackOrBoozeApi.addFood(type, newFood);
+    // console.log(response)
+    if (type === "snacks") {
+      setSnacks(prevFoods => ([...prevFoods, response]))
+    } else if (type === "drinks") {
+      setDrinks(prevFoods => ([...prevFoods, response]))
     }
   }
 
   useEffect(() => {
     async function getSnacks() {
-      let snacks = await SnackOrBoozeApi.getSnacks();
+      let snacks = await SnackOrBoozeApi.getFood('snacks');
       setSnacks(snacks);
       setIsLoading(false);
     }
@@ -35,7 +37,7 @@ function App() {
 
   useEffect(() => {
     async function getDrinks() {
-      let drinks = await SnackOrBoozeApi.getDrinks();
+      let drinks = await SnackOrBoozeApi.getFood('drinks');
       setDrinks(drinks);
       setIsLoading(false);
     }

@@ -4,7 +4,7 @@ import { Card, CardBody, CardTitle, Form, FormGroup, Label, Input, Button, Col }
 
 const NewFoodForm = ({ addFood }) => {
   const [formData, setFormData] = useState({
-    type: "snack",
+    type: "snacks",
     name: "",
     description: "",
     recipe: "",
@@ -22,7 +22,6 @@ const NewFoodForm = ({ addFood }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(formData);
     addFood({ ...formData });
     history.push('/')
   }
@@ -42,8 +41,8 @@ const NewFoodForm = ({ addFood }) => {
           <Label sm={2} for="type">Type</Label>
           <Col sm={10}>
             <Input type="select" name="type" id="type" value={formData.type} onChange={handleChange}>
-              <option value={"snack"} >Snack</option>
-              <option value={"drink"}>Drink</option>
+              <option value={"snacks"}>Snack</option>
+              <option value={"drinks"}>Drink</option>
             </Input>
           </Col>
         </FormGroup>
