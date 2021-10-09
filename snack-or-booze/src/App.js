@@ -1,17 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import Home from "./Home";
 import SnackOrBoozeApi from "./Api";
 import NavBar from "./NavBar";
-import { Route, Switch } from "react-router-dom";
 import Menu from "./FoodMenu";
 import Food from "./FoodItem";
+import NewFoodForm from './NewFoodForm';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [snacks, setSnacks] = useState([]);
   const [drinks, setDrinks] = useState([]);
+
+  const addFood = newFood => {
+    if (newFood.type === "snack") {
+      setSnacks(prevFoods => ([...prevFoods, { ...newFood, id: newFood.name.replace(/\s+/g, '-').toLowerCase() }]))
+      console.log(snacks)
+    } else if (newFood.type === "drink") {
+      setDrinks(prevFoods => ([...prevFoods, { ...newFood, id: newFood.name.replace(/\s+/g, '-').toLowerCase() }]))
+      console.log(drinks)
+    }
+  }
 
   useEffect(() => {
     async function getSnacks() {
@@ -55,6 +66,9 @@ function App() {
             </Route>
             <Route path="/drinks/:id">
               <Food items={drinks} cantFind="/drinks" />
+            </Route>
+            <Route exact path="/add">
+              <NewFoodForm addFood={addFood} />
             </Route>
             <Route>
               <p>Hmmm. I can't seem to find what you want.</p>
